@@ -3,6 +3,7 @@ require 'bundler/setup'
 require 'sinatra'
 require 'json'
 require 'oauth2'
+require 'securerandom'
 
 if development? || test?
   require 'dotenv'
@@ -30,7 +31,12 @@ get '/' do
   )
 
   authorize_url = client.auth_code.authorize_url(
-    redirect_uri: 'http://localhost:4567/oauth/callback'
+    oauth_consumer_key: Yahoo::CREDENTIALS[:client_id],
+    oauth_nonce: SecureRandom.hex,
+    oauth_signature_method: 'HMAC-SHA1',
+    oauth_signature: Yahoo::CREDENTIALS[:client_secret],
+    oauth_version: '2.0',
+    oauth_callback: 'http://lemon-party.dev/callback'
   )
 
   redirect authorize_url
