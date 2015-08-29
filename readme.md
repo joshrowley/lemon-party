@@ -12,3 +12,4 @@ A game of fantasy football gone horribly wrong.
 
 - `bundle install`
 - `ruby app.rb`
+- `cp .env.example .env` and update with your ENV variables
