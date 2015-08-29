@@ -3,20 +3,19 @@ require 'bundler/setup'
 require 'sinatra'
 require 'json'
 
-if development?
+if development? || test?
   require 'dotenv'
   require 'pry'
   require 'sinatra/reloader'
   Dotenv.load
 end
 
+YAHOO_CREDENTIALS = {
+  client_id: ENV['YAHOO_CLIENT_ID'],
+  client_secret: ENV['YAHOO_CLIENT_SECRET']
+}
+
 get '/' do
   content_type :json
-
-  response = {
-    client_id: ENV['YAHOO_CLIENT_ID'],
-    client_secret: ENV['YAHOO_CLIENT_SECRET']
-  }
-
-  response.to_json
+  YAHOO_CREDENTIALS.to_json
 end
