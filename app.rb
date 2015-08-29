@@ -1,11 +1,14 @@
 require 'rubygems'
 require 'bundler/setup'
-require 'dotenv'
 require 'sinatra'
 require 'json'
-require 'pry'
 
-Dotenv.load
+if development?
+  require 'dotenv'
+  require 'pry'
+  require 'sinatra/reloader'
+  Dotenv.load
+end
 
 get '/' do
   content_type :json
