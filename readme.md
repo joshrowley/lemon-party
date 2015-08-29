@@ -11,8 +11,10 @@ A game of fantasy football gone horribly wrong.
 ## Setup
 
 - `bundle install`
-- `ruby app.rb`
+- install [pow](http://pow.cx/): `rake pow:install`
+- `rake pow:link`
 - `cp .env.example .env` and update with your ENV variables
+- `rake open`
 
 ## Tests
 
